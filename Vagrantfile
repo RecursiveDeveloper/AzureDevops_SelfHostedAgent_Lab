@@ -1,8 +1,6 @@
-AGENT_PACKAGE_URL = "https://download.agent.dev.azure.com/agent/4.271.0/vsts-agent-linux-x64-4.271.0.tar.gz"
-AGENT_NAME = "agent_name"
-AZ_ORG_URL_PATH = "azure_devops_organization_url" #e.g. https://dev.azure.com/your_organization
-AZ_DEVOPS_PAT = "azure_devops_personal_access_tokens"
-PROJECT_NAME = "project_name"
+AGENT_NAME = "agent_name" #e.g. my-agent
+AZ_ORG_URL_PATH = "az_org_url_path" #e.g. https://dev.azure.com/your_organization
+AZ_DEVOPS_PAT = "az_devops_pat"
 
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/jammy64"
@@ -16,5 +14,5 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "shell", path: "./install_agent.sh", 
-    args: "#{AGENT_PACKAGE_URL} #{AGENT_NAME} #{AZ_ORG_URL_PATH} #{AZ_DEVOPS_PAT} #{PROJECT_NAME}"
+    args: "#{AGENT_NAME} #{AZ_ORG_URL_PATH} #{AZ_DEVOPS_PAT}"
 end
